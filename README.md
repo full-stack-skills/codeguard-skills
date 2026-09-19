@@ -10,16 +10,16 @@
 
 ## Status
 
-This repository is the standalone package extracted from `codeguard-plugin/skills`. It contains **68 skills**: 11 core governance skills and 57 language/file-type skills. The package structure, deeper content, generators, lint gate, TRACE evaluation, and initial GitHub `main` push are complete.
+This repository is the standalone package extracted from `codeguard-plugin/skills`. It contains **68 skills**: 11 core governance skills and 57 language/file-type skills. The package structure, deeper content, generators, lint gate, TRACE evaluation, immutable `v0.1.0` tag, and plugin vendor integration are complete.
 
-Repository: [full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills). No release/tag has been created yet, and the package has not been wired back into `codeguard-plugin` through a versioned vendor lock. A Git push is not represented as a Marketplace or plugin release.
+Repository: [full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills). `codeguard-plugin` v0.4.0 pins `v0.1.0` and commit `d6f2ee3c7b67ef037082212ca13a4bda758eefe0` through a per-skill checksummed vendor lock. A tag, plugin publication, Marketplace update, and fresh host installation remain distinct proof levels; fresh host installation has not yet been claimed here.
 
 ## Responsibility split
 
 - `codeguard-skills`: portable operational knowledge, boundaries, workflows, failure semantics, examples, and references.
 - `codeguard-plugin`: executable CLI, hooks, linters, runtime registry, retries, and host integration.
 
-After the first standalone release, the plugin should vendor a versioned and checksummed snapshot from this package instead of maintaining an independent handwritten copy.
+The plugin vendors a versioned and checksummed snapshot from this package instead of maintaining an independent handwritten copy. Only plugin-specific skills intentionally absent from its lock may be authored inside the plugin repository.
 
 ## Package contents
 

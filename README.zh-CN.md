@@ -10,11 +10,11 @@
 
 ## 当前状态
 
-该仓库是从 `codeguard-plugin/skills` 拆出的独立技能包，包含 **68 个技能**：11 个核心治理技能与 57 个语言/文件类型技能。当前已完成包结构、技能深化、生成器、lint、TRACE 评估与 GitHub `main` 分支首次推送。
+该仓库是从 `codeguard-plugin/skills` 拆出的独立技能包，包含 **68 个技能**：11 个核心治理技能与 57 个语言/文件类型技能。当前已完成包结构、技能深化、生成器、lint、TRACE 评估、不可变 `v0.1.0` tag 与插件 vendor 回接。
 
-远端仓库：[full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills)。当前尚未创建 release/tag，也尚未把该包以版本锁定方式回接到 `codeguard-plugin`；不应把 `main` 分支推送与 Marketplace/插件发布混为一谈。
+远端仓库：[full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills)。`codeguard-plugin` v0.4.0 已通过逐技能 checksum lock 固定 `v0.1.0` 与 commit `d6f2ee3c7b67ef037082212ca13a4bda758eefe0`。tag、插件发布、Marketplace 更新与全新宿主安装仍是不同证据层级；本文尚不声称完成全新宿主安装验证。
 
-独立包负责可跨宿主复用的操作知识；`codeguard-plugin` 继续负责 CLI、hooks、linters 和运行时编排。待远端仓库建立和首版发布后，插件应通过带版本与校验值的 vendor 锁文件消费技能快照，避免两份手工维护的技能再次漂移。
+独立包负责可跨宿主复用的操作知识；`codeguard-plugin` 继续负责 CLI、hooks、linters 和运行时编排。插件现在通过带版本与校验值的 vendor 锁文件消费技能快照，避免两份手工维护的技能再次漂移；只有未列入 lock 的插件内部定制技能才允许留在插件仓直接维护。
 
 ## 为什么要独立
 
@@ -31,7 +31,7 @@ flowchart LR
     A[codeguard-skills<br/>68 个跨宿主技能] -->|按需加载知识| C[Codex / ZCode / Kimi / Claude Code]
     B[codeguard-plugin<br/>CLI · hooks · linters · registry] -->|执行真实门禁| C
     B -->|languages.json 能力快照| A
-    A -. 首版发布后<br/>版本锁定 + checksum vendor .-> B
+    A -. v0.1.0<br/>版本锁定 + checksum vendor .-> B
 ```
 
 ## 技能分层
@@ -71,7 +71,7 @@ python3 scripts/generate_core_resources.py --check --format json
 
 `generate_language_skills.py` 默认只检查，只有显式传入 `--write` 才写入。它以 `references/languages.json` 为能力快照，不删除未知文件。`generate_core_resources.py` 也遵循相同的 check/write 模式。
 
-TRACE 评估结果见 [TRACE_EVALUATION.md](./TRACE_EVALUATION.md)。拆分与发布剩余步骤见 [MIGRATION.md](./MIGRATION.md)。
+TRACE 评估结果见 [TRACE_EVALUATION.md](./TRACE_EVALUATION.md)。迁移证据与尚未完成的全新宿主验证见 [MIGRATION.md](./MIGRATION.md)。
 
 ## 目录
 
