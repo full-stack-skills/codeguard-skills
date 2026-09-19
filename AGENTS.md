@@ -30,7 +30,7 @@ Run TRACE evaluation for changed skills. CI also executes `scripts/trace_gate.py
 - Published `v*` tags are protected by an active GitHub tag ruleset and must never be moved or deleted.
 - GitHub immutable releases are enabled for future releases.
 - Publishing a release invokes `.github/workflows/dispatch-plugin-sync.yml`, which sends the immutable tag and peeled commit SHA to `full-stack-plugins/codeguard-plugin`.
-- The dispatch workflow requires repository secret `CODEGUARD_PLUGIN_DISPATCH_TOKEN`, scoped to Contents: write for the plugin repository only. Never use a broad personal token.
+- The dispatch workflow requires repository secret `SKILLS_SYNC_TOKEN`, scoped to Contents: write for the plugin repository only. Never use a broad personal token.
 
 ## Cross-skill references
 
