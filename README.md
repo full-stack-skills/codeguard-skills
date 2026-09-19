@@ -1,0 +1,70 @@
+<div align="center">
+
+# codeguard-skills
+
+**Codeguard quality-gate knowledge for Codex, ZCode, Kimi, and other Agent Skills clients**
+
+[简体中文](./README.zh-CN.md) | English
+
+</div>
+
+## Status
+
+This directory is the local standalone-package candidate extracted from `codeguard-plugin/skills`. It contains **68 skills**: 11 core governance skills and 57 language/file-type skills. The local package structure, deeper content, generators, lint gate, and TRACE evaluation are complete.
+
+The intended GitHub repository, `full-stack-skills/codeguard-skills`, does not exist yet. Therefore this package is not represented as published or remotely installable. See [MIGRATION.md](./MIGRATION.md) for the remaining publication and plugin-vendoring work.
+
+## Responsibility split
+
+- `codeguard-skills`: portable operational knowledge, boundaries, workflows, failure semantics, examples, and references.
+- `codeguard-plugin`: executable CLI, hooks, linters, runtime registry, retries, and host integration.
+
+After the first standalone release, the plugin should vendor a versioned and checksummed snapshot from this package instead of maintaining an independent handwritten copy.
+
+## Package contents
+
+| Layer | Count | Scope |
+|---|---:|---|
+| Entry and commands | 6 | route, detect, check, fix, CVE, init |
+| Git governance | 2 | branch model and commit-message governance |
+| Security governance | 3 | code, API, and data security |
+| Language/file profiles | 57 | 53 stable gates and 4 planned profiles |
+
+Every generated language skill provides trigger guidance, capability boundaries, security declarations, a seven-step workflow, failure classification, output contract, gotchas, FAQ, two reference groups, and four scenario examples.
+
+## Local validation
+
+```bash
+python3 scripts/lint_skills.py
+python3 scripts/generate_language_skills.py --check --format json
+python3 scripts/generate_core_resources.py --check --format json
+```
+
+Both generators default to check-only behavior and require an explicit `--write` to modify files. They never delete unknown files.
+
+Once the GitHub repository is created and the first release is verified, the expected installation shape is:
+
+```bash
+npx skills add full-stack-skills/codeguard-skills
+npx skills add full-stack-skills/codeguard-skills --skill codeguard-check
+```
+
+These commands describe the post-publication contract; they are not evidence that the currently absent remote is installable.
+
+## Repository layout
+
+```text
+codeguard-skills/
+├── .claude-plugin/plugin.json
+├── skills/
+├── references/languages.json
+├── scripts/
+├── MIGRATION.md
+├── TRACE_EVALUATION.md
+├── README.md
+└── README.zh-CN.md
+```
+
+## License
+
+Apache License 2.0. See [LICENSE](./LICENSE).

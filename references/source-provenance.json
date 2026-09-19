@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "skills_source": {
+    "local_path": "full-stack-plugins-repositories/codeguard-plugin/skills",
+    "role": "initial extraction source"
+  },
+  "runtime_registry_source": {
+    "local_path": "full-stack-plugins-repositories/codeguard-plugin/scripts/languages.json",
+    "snapshot_path": "references/languages.json",
+    "language_count": 57,
+    "stable_count": 53,
+    "planned_count": 4
+  },
+  "standalone_remote": {
+    "url": "https://github.com/full-stack-skills/codeguard-skills",
+    "verified_exists": false,
+    "note": "Do not claim publication or remote installation until this changes and a fresh-cache install is verified."
+  }
+}
