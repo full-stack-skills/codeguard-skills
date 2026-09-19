@@ -42,6 +42,8 @@ python3 scripts/generate_core_resources.py --check --format json
 
 Both generators default to check-only behavior and require an explicit `--write` to modify files. They never delete unknown files.
 
+CI additionally runs the pinned deterministic TRACE evaluator across all 68 skills and rejects any score below 4.5. Published `v*` tags are protected from update/deletion; future releases are immutable and dispatch their tag plus peeled commit SHA to the plugin synchronization workflow.
+
 The expected generic Skills CLI installation shape is:
 
 ```bash

@@ -1,0 +1,58 @@
+name: Dispatch Plugin Skill Sync
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Released immutable version tag, for example v0.2.0
+        required: true
+        type: string
+      sha:
+        description: Optional expected peeled commit SHA
+        required: false
+        type: string
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ secrets.CODEGUARD_PLUGIN_DISPATCH_TOKEN }}
+      RELEASE_REF: ${{ github.event.release.tag_name || inputs.ref }}
+      REQUESTED_SHA: ${{ inputs.sha }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate dispatch authority and release identity
+        id: release
+        shell: bash
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "::error::CODEGUARD_PLUGIN_DISPATCH_TOKEN is required. Use a fine-grained token with Contents: write on full-stack-plugins/codeguard-plugin."
+            exit 1
+          fi
+          if [[ ! "$RELEASE_REF" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid release ref: $RELEASE_REF"
+            exit 1
+          fi
+          release_sha="$(git rev-list -n 1 "$RELEASE_REF")"
+          if [[ -n "$REQUESTED_SHA" && "$REQUESTED_SHA" != "$release_sha" ]]; then
+            echo "::error::Requested SHA $REQUESTED_SHA does not match $RELEASE_REF at $release_sha"
+            exit 1
+          fi
+          echo "sha=$release_sha" >> "$GITHUB_OUTPUT"
+      - name: Dispatch the immutable release to codeguard-plugin
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          gh api --method POST \
+            repos/full-stack-plugins/codeguard-plugin/dispatches \
+            -f event_type=skills-updated \
+            -F "client_payload[ref]=$RELEASE_REF" \
+            -F "client_payload[sha]=$RELEASE_SHA"

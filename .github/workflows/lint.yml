@@ -16,3 +16,15 @@ jobs:
       - run: python3 scripts/lint_skills.py
       - run: python3 scripts/generate_language_skills.py --check --format json
       - run: python3 scripts/generate_core_resources.py --check --format json
+      - name: Checkout pinned TRACE evaluator
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          repository: full-stack-skills/agent-skills
+          ref: 91cd3e8e2aafd73d73fc037ce75dee7b6b663ffb
+          path: .trace-evaluator
+          persist-credentials: false
+      - name: Enforce TRACE score floor
+        run: |
+          python3 scripts/trace_gate.py \
+            --evaluator .trace-evaluator/skills/skill-trace-evaluation/scripts/trace_evaluate.py \
+            --threshold 4.5

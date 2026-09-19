@@ -23,7 +23,14 @@ python3 scripts/generate_language_skills.py --check --format json
 python3 scripts/generate_core_resources.py --check --format json
 ```
 
-Run TRACE evaluation for changed skills. Keep every `SKILL.md` below 500 lines and use progressive disclosure for reference material.
+Run TRACE evaluation for changed skills. CI also executes `scripts/trace_gate.py` with the evaluator pinned in `.github/workflows/lint.yml` and rejects any skill below 4.5. Keep every `SKILL.md` below 500 lines and use progressive disclosure for reference material.
+
+## Release and downstream synchronization
+
+- Published `v*` tags are protected by an active GitHub tag ruleset and must never be moved or deleted.
+- GitHub immutable releases are enabled for future releases.
+- Publishing a release invokes `.github/workflows/dispatch-plugin-sync.yml`, which sends the immutable tag and peeled commit SHA to `full-stack-plugins/codeguard-plugin`.
+- The dispatch workflow requires repository secret `CODEGUARD_PLUGIN_DISPATCH_TOKEN`, scoped to Contents: write for the plugin repository only. Never use a broad personal token.
 
 ## Cross-skill references
 

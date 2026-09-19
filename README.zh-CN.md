@@ -71,6 +71,8 @@ python3 scripts/generate_core_resources.py --check --format json
 
 `generate_language_skills.py` 默认只检查，只有显式传入 `--write` 才写入。它以 `references/languages.json` 为能力快照，不删除未知文件。`generate_core_resources.py` 也遵循相同的 check/write 模式。
 
+CI 还会对全部 68 个技能执行固定版本的确定性 TRACE 评估，任何低于 4.5 的技能都会阻止合并。已发布的 `v*` tag 由 GitHub ruleset 禁止更新和删除；未来 Release 启用不可变保护，并把 tag 与解析后的 commit SHA 分发给插件同步工作流。
+
 TRACE 评估结果见 [TRACE_EVALUATION.md](./TRACE_EVALUATION.md)。迁移证据与尚未完成的全新宿主验证见 [MIGRATION.md](./MIGRATION.md)。
 
 ## 目录
