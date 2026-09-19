@@ -2,6 +2,7 @@
 
 ## 已完成
 
+- 创建公开远端 `full-stack-skills/codeguard-skills` 并推送 `main`。
 - 建立本地独立包目录和 68 项 manifest。
 - 从 Codeguard 运行时注册表提取 57 个语言/文件类型能力快照。
 - 将 53 个 stable 与 4 个 planned 状态写入技能，不再沿用旧文档中的过期状态。
@@ -11,16 +12,16 @@
 
 ## 为什么暂时没有修改 codeguard-plugin
 
-当前 `https://github.com/full-stack-skills/codeguard-skills.git` 不存在。若先删除插件内技能或写入一个不存在的 vendor 来源，会让已发布插件失去技能或形成不可复现的供应链引用。
+远端 `main` 现已存在，但尚没有不可变 release/tag 和全新缓存安装证据。若现在就删除插件内技能或将浮动 `main` 当作 vendor 来源，会让已发布插件形成不可复现的供应链引用。
 
-此外，`codeguard-plugin` 的仓库规则要求改动与版本、发布链一起处理。本次没有得到创建远端、发布版本、修改插件发行物或推送的授权，因此插件工作树保持不变。
+此外，`codeguard-plugin` 的仓库规则要求改动与版本、发布链一起处理。本次授权范围是创建并推送独立技能仓库，不包含修改、发布或推送 `codeguard-plugin`，因此插件工作树保持不变。
 
 ## 首次发布顺序
 
 ```mermaid
 flowchart TD
-    A[创建 full-stack-skills/codeguard-skills 远端] --> B[初始化独立 Git 仓库]
-    B --> C[提交当前本地包并运行 CI]
+    A[已完成：创建远端] --> B[已完成：初始化并推送 main]
+    B --> C[确认首次 CI]
     C --> D[发布 codeguard-skills v0.1.0]
     D --> E[从全新缓存执行 npx skills add 验证]
     E --> F[在 codeguard-plugin 添加 skills.lock.json]

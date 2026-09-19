@@ -10,9 +10,9 @@
 
 ## Status
 
-This directory is the local standalone-package candidate extracted from `codeguard-plugin/skills`. It contains **68 skills**: 11 core governance skills and 57 language/file-type skills. The local package structure, deeper content, generators, lint gate, and TRACE evaluation are complete.
+This repository is the standalone package extracted from `codeguard-plugin/skills`. It contains **68 skills**: 11 core governance skills and 57 language/file-type skills. The package structure, deeper content, generators, lint gate, TRACE evaluation, and initial GitHub `main` push are complete.
 
-The intended GitHub repository, `full-stack-skills/codeguard-skills`, does not exist yet. Therefore this package is not represented as published or remotely installable. See [MIGRATION.md](./MIGRATION.md) for the remaining publication and plugin-vendoring work.
+Repository: [full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills). No release/tag has been created yet, and the package has not been wired back into `codeguard-plugin` through a versioned vendor lock. A Git push is not represented as a Marketplace or plugin release.
 
 ## Responsibility split
 
@@ -42,14 +42,14 @@ python3 scripts/generate_core_resources.py --check --format json
 
 Both generators default to check-only behavior and require an explicit `--write` to modify files. They never delete unknown files.
 
-Once the GitHub repository is created and the first release is verified, the expected installation shape is:
+The expected generic Skills CLI installation shape is:
 
 ```bash
 npx skills add full-stack-skills/codeguard-skills
 npx skills add full-stack-skills/codeguard-skills --skill codeguard-check
 ```
 
-These commands describe the post-publication contract; they are not evidence that the currently absent remote is installable.
+These commands describe the host-side contract. Plugin publication, Marketplace installation, and real host loading still require separate evidence.
 
 ## Repository layout
 

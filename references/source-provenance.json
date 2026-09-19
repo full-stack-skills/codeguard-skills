@@ -13,7 +13,9 @@
   },
   "standalone_remote": {
     "url": "https://github.com/full-stack-skills/codeguard-skills",
-    "verified_exists": false,
-    "note": "Do not claim publication or remote installation until this changes and a fresh-cache install is verified."
+    "verified_exists": true,
+    "initial_commit": "e84535c7e0261782edec70ea4ed37230a124351e",
+    "default_branch": "main",
+    "note": "The repository and main branch exist. Release, fresh-cache installation, plugin vendoring, and host runtime validation remain separate proof levels."
   }
 }

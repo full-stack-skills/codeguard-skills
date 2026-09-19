@@ -9,7 +9,7 @@
 - 最终来源：当前 `codeguard-skills/skills`。
 - 评分范围：1.0–5.0；4.5 及以上为优秀。
 
-> 本报告评估技能质量，不证明 Codeguard CLI、插件发行物、远端仓库或宿主安装已经可用。
+> 本报告评估技能质量。GitHub 远端与 `main` 已建立，但本报告不证明 Codeguard CLI、release/tag、插件发行物或真实宿主安装已经可用。
 
 ## 总体结果
 
@@ -112,7 +112,7 @@
 
 ### P1 · 发布与消费链
 
-1. 创建 `full-stack-skills/codeguard-skills` 远端并发布不可变 `v0.1.0`。
+1. 等待并核对首次 GitHub Actions CI，再发布不可变 `v0.1.0`。
 2. 从全新缓存验证完整安装和单技能安装。
 3. 在 `codeguard-plugin` 增加带 commit、version、sha256 的 vendor lock/sync/check，而不是继续手工双写。
 
@@ -148,4 +148,4 @@ done
 
 技能内容质量：**通过**。68 个技能的确定性 TRACE 总体均分 4.643，最低 4.56，满足 4.5+ 目标。
 
-独立仓库发布与插件迁移：**未完成**。远端仓库、tag、全新缓存安装、插件 vendor lock 和真实宿主验证仍属于后续发布动作，详见 `MIGRATION.md`。
+独立仓库：**已创建并推送 main**。完整发布与插件迁移：**未完成**。tag/release、全新缓存安装、插件 vendor lock 和真实宿主验证仍属于后续发布动作，详见 `MIGRATION.md`。

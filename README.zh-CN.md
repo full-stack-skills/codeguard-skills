@@ -10,7 +10,9 @@
 
 ## 当前状态
 
-该目录是从 `codeguard-plugin/skills` 拆出的独立技能包候选，包含 **68 个技能**：11 个核心治理技能与 57 个语言/文件类型技能。当前已完成本地包结构、技能深化、生成器、lint 与 TRACE 评估；`full-stack-skills/codeguard-skills` 远端仓库目前尚不存在，因此本目录不能被描述为“已发布”或“可从 GitHub 安装”。
+该仓库是从 `codeguard-plugin/skills` 拆出的独立技能包，包含 **68 个技能**：11 个核心治理技能与 57 个语言/文件类型技能。当前已完成包结构、技能深化、生成器、lint、TRACE 评估与 GitHub `main` 分支首次推送。
+
+远端仓库：[full-stack-skills/codeguard-skills](https://github.com/full-stack-skills/codeguard-skills)。当前尚未创建 release/tag，也尚未把该包以版本锁定方式回接到 `codeguard-plugin`；不应把 `main` 分支推送与 Marketplace/插件发布混为一谈。
 
 独立包负责可跨宿主复用的操作知识；`codeguard-plugin` 继续负责 CLI、hooks、linters 和运行时编排。待远端仓库建立和首版发布后，插件应通过带版本与校验值的 vendor 锁文件消费技能快照，避免两份手工维护的技能再次漂移。
 
@@ -43,16 +45,16 @@ flowchart LR
 
 语言技能统一包含：触发条件、适用/不适用边界、隐私与安全、能力快照、七步 Workflow、失败分类、输出模板、至少六个 gotchas、FAQ、两类 references 和四个 examples。
 
-## 本地使用
+## 安装形状
 
-远端发布前，可以把本地技能目录复制或链接到宿主支持的技能目录。具体目标路径由宿主决定；不要把本仓库的计划安装命令当作当前可用的远端安装证据。
-
-远端仓库发布后，预期安装方式为：
+可以把技能目录复制或链接到宿主支持的技能目录。通用 Skills CLI 的预期安装形状为：
 
 ```bash
 npx skills add full-stack-skills/codeguard-skills
 npx skills add full-stack-skills/codeguard-skills --skill codeguard-check
 ```
+
+安装命令是宿主侧契约；插件发布、Marketplace 安装和真实宿主加载仍需独立验证。
 
 ## 开发与验证
 
