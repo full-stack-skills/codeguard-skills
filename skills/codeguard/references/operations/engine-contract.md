@@ -54,11 +54,27 @@ codeguard task show|claim|heartbeat|release|attempt|verify ID
 codeguard gate pre-commit [path]
 ```
 
-Rust 组件当前对所有质量路径固定返回退出码 `3`（检查未完成），能力矩阵中全部条目为 `gap`。**因此：**
+Rust 组件的**就绪程度由它自己声明**，不要在本技能包里写死任何结论：
+
+```bash
+codeguard capabilities all --format json
+```
+
+输出为 `capability_inventory`，其中每个「语言 × 平台 × 检查类别」单元的
+`status` 取 `implemented` / `gap` / `not_applicable`。以该声明为准：
+
+- `implemented` → 该类别可由 Rust 内核签发。
+- `gap` / `not_applicable` / 清单读不到 / 找不到该单元 → 该类别仍由 Legacy 签发。
+
+因此：
 
 - 可以用 `detect` / `capabilities` / `plan` / `doctor` 做只读观察。
-- **不能**用它的 `check` / `lint` / `cve` 结果声称任何质量通过。
-- 它的输出只能表述为“局部原生观察”或“未完成”。
+- 只有自报 `implemented` 的类别，才能用它的结果声称质量通过。
+- 其余类别一律回到 Legacy 命令面，并如实标注该结果为未完成。
+- **读不到声明不等于通过。** 能力清单不可读时按 `gap` 处理。
+
+插件侧对应的判定入口是 `codeguard engine`，它会打印内核自报的
+implemented / gap 计数，并以同一判据决定签发方。
 
 ## 已发生的不兼容
 
