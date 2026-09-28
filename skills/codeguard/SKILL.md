@@ -62,7 +62,7 @@ bin/codeguard fix --lang <name>
 bin/codeguard cve --severity HIGH
 ```
 
-Rust 引擎下改用位置参数（`check all|java`、`cve <rust|python|typescript>`），且 `fix`、`--lang`、`--ecosystem`、`--severity` 均不存在。该组件当前对所有质量路径返回退出码 3（未完成），只能表述为局部原生观察，不得据此签发通过。
+Rust 引擎下改用位置参数（`check all|java`、`cve <rust|python|typescript>`），且 `fix`、`--lang`、`--ecosystem`、`--severity` 均不存在。它是否可签发由自报能力决定：`codeguard capabilities all --format json` 中该类别 `status` 为 `implemented` 才可签发；`gap`、`not_applicable`、读不到或找不到该单元时，一律表述为未完成并回到 Legacy 命令面。
 
 ## II. 门禁规则（不可协商）
 
