@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Fix"
+  short_description: "对 Codeguard 检出的可逆格式和静态规则问题执行受控自动修复；当用户说自动修复、/fix、格式化修复，或 lint 明…"
+  default_prompt: "使用 $codeguard-fix，围绕“对 Codeguard 检出的可逆格式和静态规则问题执行受控自动修复；当用户说自动修复、/fix、格式化修复，或 lint 明”处理我的当前需求。"

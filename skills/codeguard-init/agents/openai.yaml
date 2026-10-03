@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Init"
+  short_description: "为已有仓库规划并受控接入 Codeguard，包括语言检测、linter 配置、pre-commit、AGENTS.md 规则…"
+  default_prompt: "使用 $codeguard-init，围绕“为已有仓库规划并受控接入 Codeguard，包括语言检测、linter 配置、pre-commit、AGENTS.md 规则”处理我的当前需求。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Cve"
+  short_description: "编排 Maven、Node、Python 和 Rust 依赖的 CVE 扫描与门禁；未被原生扫描器覆盖的语言自动落 trivy…"
+  default_prompt: "使用 $codeguard-cve，围绕“编排 Maven、Node、Python 和 Rust 依赖的 CVE 扫描与门禁；未被原生扫描器覆盖的语言自动落 trivy”处理我的当前需求。"
