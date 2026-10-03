@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Elm"
+  short_description: "检查 Elm 项目的代码规范门禁，诊断 lint 失败并复验修复结果"
+  default_prompt: "使用 $codeguard-elm，围绕“检查 Elm 项目的代码规范门禁，诊断 lint 失败并复验修复结果”处理我的当前需求。"

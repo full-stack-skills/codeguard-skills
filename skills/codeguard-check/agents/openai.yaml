@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Check"
+  short_description: "对 Codeguard 支持的仓库执行只读 lint 门禁并解释结果；当用户说 check、跑检查、lint 报告、提交前检查…"
+  default_prompt: "使用 $codeguard-check，围绕“对 Codeguard 支持的仓库执行只读 lint 门禁并解释结果；当用户说 check、跑检查、lint 报告、提交前检查”处理我的当前需求。"

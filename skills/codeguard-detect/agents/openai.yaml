@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Detect"
+  short_description: "使用 Codeguard 通过扩展名、文件名和项目标记识别仓库语言构成；当用户询问这是什么语言项目、需要为 lint 选路、调…"
+  default_prompt: "使用 $codeguard-detect，围绕“使用 Codeguard 通过扩展名、文件名和项目标记识别仓库语言构成；当用户询问这是什么语言项目、需要为 lint 选路、调”处理我的当前需求。"

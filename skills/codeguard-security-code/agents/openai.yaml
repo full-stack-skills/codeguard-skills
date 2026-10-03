@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Security Code"
+  short_description: "审查源码/配置泄露、硬编码凭据与依赖 CVE，并形成可复验的修复或缓解计划；当用户要求代码安全、配置泄露、漏洞扫描、依赖安全或…"
+  default_prompt: "使用 $codeguard-security-code，围绕“审查源码/配置泄露、硬编码凭据与依赖 CVE，并形成可复验的修复或缓解计划；当用户要求代码安全、配置泄露、漏洞扫描、依赖安全或”处理我的当前需求。"

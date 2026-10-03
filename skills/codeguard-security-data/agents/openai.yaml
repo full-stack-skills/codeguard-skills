@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Security Data"
+  short_description: "审查敏感数据分类、加密存储、返回/日志脱敏、传输完整性、备份与等保/密评证据；当用户处理手机号、身份证、银行卡、住址等字段，或…"
+  default_prompt: "使用 $codeguard-security-data，围绕“审查敏感数据分类、加密存储、返回/日志脱敏、传输完整性、备份与等保/密评证据；当用户处理手机号、身份证、银行卡、住址等字段，或”处理我的当前需求。"

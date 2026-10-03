@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Git Branch"
+  short_description: "识别并执行 Gitflow、GitHub/GitLab Flow、Trunk-Based、OneFlow 和 Release…"
+  default_prompt: "使用 $codeguard-git-branch，围绕“识别并执行 Gitflow、GitHub/GitLab Flow、Trunk-Based、OneFlow 和 Release”处理我的当前需求。"

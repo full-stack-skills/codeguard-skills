@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard"
+  short_description: "Codeguard 主入口与路由中心；当用户要求识别仓库语言、执行 lint/格式门禁、受控修复、CVE 扫描、Git 分支或…"
+  default_prompt: "使用 $codeguard，围绕“Codeguard 主入口与路由中心；当用户要求识别仓库语言、执行 lint/格式门禁、受控修复、CVE 扫描、Git 分支或”处理我的当前需求。"

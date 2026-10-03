@@ -442,11 +442,31 @@ def render_example(lang: dict[str, Any], kind: str) -> str:
     return examples[kind]
 
 
+def render_openai_yaml(lang: dict[str, Any]) -> str:
+    """从语言快照生成 Codex 展示配置，避免技能重新生成后元数据漂移。"""
+    skill_name = f"codeguard-{lang['id']}"
+    description = (
+        f"识别 {lang['name']} 项目的工具链与规范门禁范围，明确 planned 状态和验证限制"
+        if lang["status"] == "planned"
+        else f"检查 {lang['name']} 项目的代码规范门禁，诊断 lint 失败并复验修复结果"
+    )
+    interface = {
+        "display_name": f"Codeguard {lang['name']}",
+        "short_description": description,
+        "default_prompt": f"使用 ${skill_name}，围绕“{description}”处理我的当前需求。",
+    }
+    return "interface:\n" + "".join(
+        f"  {key}: {json.dumps(value, ensure_ascii=False)}\n"
+        for key, value in interface.items()
+    )
+
+
 def desired_files(languages: list[dict[str, Any]]) -> dict[Path, str]:
     files: dict[Path, str] = {}
     for lang in languages:
         skill = SKILLS / f"codeguard-{lang['id']}"
         files[skill / "SKILL.md"] = render_skill(lang)
+        files[skill / "agents" / "openai.yaml"] = render_openai_yaml(lang)
         files[skill / "references" / "rules" / "gate-rules.md"] = render_gate_rules(lang)
         files[skill / "references" / "tooling" / "toolchain.md"] = render_toolchain(lang)
         for example in (

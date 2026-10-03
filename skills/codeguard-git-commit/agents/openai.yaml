@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codeguard Git Commit"
+  short_description: "根据已暂存差异和仓库历史起草、校验 Conventional Commits、Gitmoji 或 Udacity 风格的提交信…"
+  default_prompt: "使用 $codeguard-git-commit，围绕“根据已暂存差异和仓库历史起草、校验 Conventional Commits、Gitmoji 或 Udacity 风格的提交信”处理我的当前需求。"
